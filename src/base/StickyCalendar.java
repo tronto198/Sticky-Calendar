@@ -30,10 +30,10 @@ import java.awt.event.WindowEvent;
 
 public class StickyCalendar extends JFrame {
 	
-	class ImageButton extends JButton{
+	class ImageButton extends JButton{	//ÀÌ¹ÌÁö ¹öÆ° ¼³Á¤µé
 		
 		ImageButton(ImageIcon icon){
-
+			//±âº» ¼³Á¤
 			super(icon);
 			this.setBorderPainted(false);
 			this.setFocusPainted(false);
@@ -48,7 +48,7 @@ public class StickyCalendar extends JFrame {
 		}
 	}
 	
-	class PlSpace extends JPanel{
+	class PlSpace extends JPanel{		//¿©¹é¿ë ¼³Á¤
 		
 		PlSpace(){
 			this.setPreferredSize(new Dimension(25,10));
@@ -56,8 +56,11 @@ public class StickyCalendar extends JFrame {
 		}
 	}
 	
-	class PlCanMoveFrame extends JPanel {	//Ã¢ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ğ³Îµï¿½ 
-
+	class PlCanMoveFrame extends JPanel {	//Ã¢ ÀÌµ¿ÇÒ ¼ö ÀÖ´Â ÆĞ³Îµé 
+		/*
+		 * ÆĞ³Î¿¡ ¸¶¿ì½º¸¦ Å¬¸¯ÇÏ¸é m¿¡ À§Ä¡¸¦ ÀúÀå
+		 * ¸¶¿ì½º°¡ µå·¡±×µÇ¸é mÀ» ÀÌ¿ëÇØ¼­ Ã¢À» ÀÌµ¿½ÃÅ´
+		 */
 		class Motion{
 			int x, y;
 			
@@ -147,7 +150,7 @@ public class StickyCalendar extends JFrame {
 		}
 	}
 	
-	class PlCalendarScreen extends JPanel {	//Ä¶ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	class PlCalendarScreen extends JPanel {	//Ä¶¸°´õ È­¸é Å¬·¡½º
 		
 		class PlTopBar extends PlCanMoveFrame{
 			/*
@@ -168,7 +171,7 @@ public class StickyCalendar extends JFrame {
 			JButton close = new ImageButton(DB.getImage().Xicon);
 			
 			PlTopBar(){
-				makeButton();	//prev, next, close
+				makeButton();	//prev, next, close ¹öÆ° Á¦ÀÛ
 				
 				Font font = new Font("Gulim", Font.BOLD, 15);
 				year.setPreferredSize(new Dimension(60,35));
@@ -209,9 +212,9 @@ public class StickyCalendar extends JFrame {
 			
 			void setTime(Date c) {
 				
-				year.setText(String.valueOf(c.get(c.YEAR)) + "ï¿½ï¿½");
+				year.setText(String.valueOf(c.get(c.YEAR)) + "³â");
 				
-				month.setText(String.valueOf(c.get(Date.MONTH) + 1) + "ï¿½ï¿½");
+				month.setText(String.valueOf(c.get(Date.MONTH) + 1) + "¿ù");
 				
 			}
 		}
@@ -348,9 +351,9 @@ public class StickyCalendar extends JFrame {
 					 * 		-PlSpace
 					*/
 
-					JLabel lblDate = new JLabel();		//ï¿½ï¿½Â¥ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
-					JPanel space_south = new JPanel();	//ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
-					ArrayList<Schedule> ScheduleList;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+					JLabel lblDate = new JLabel();		//³¯Â¥ ³ªÅ¸³»´Â ¶óº§
+					JPanel space_south = new JPanel();	//ÇÏ´Ü ¿©¹é
+					ArrayList<Schedule> ScheduleList;	//½ºÄÉÁÙ ¸®½ºÆ®
 					PlScheduleList ScheduleListview = new PlScheduleList();
 					private boolean notcurrentmonth = false;
 					
@@ -530,8 +533,8 @@ public class StickyCalendar extends JFrame {
 			 */
 
 			private JPanel PlWeek = new JPanel();
-			private PlMonth CurrentMonth = new PlMonth();	//ï¿½Ì¹ï¿½ï¿½ï¿½
-			private Date TargetTime;  		//ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½
+			private PlMonth CurrentMonth = new PlMonth();	//ÀÌ¹ø´Ş
+			private Date TargetTime;  		//¼±ÅÃµÈ ´Ş
 			
 			PlMainScreen(){
 				this.setLayout(new BorderLayout());
@@ -546,7 +549,7 @@ public class StickyCalendar extends JFrame {
 			}
 			
 			private void MakePlWeek() {
-				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+				//¿äÀÏ ¹Ù ¸¸µé±â
 				PlWeek.setLayout(new GridLayout(0, 7, 0, 0));
 				
 				JLabel lblSun = new JLabel("Sun");
@@ -613,7 +616,7 @@ public class StickyCalendar extends JFrame {
 				PaintCurrentMonth();
 			}
 			
-			void SetMonth(Date time) {	//Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			void SetMonth(Date time) {	//Ç¥½ÃÇÒ ´Ş ¼³Á¤
 
 				TargetTime.set(time.get(time.YEAR), time.get(Date.MONTH), time.get(Date.DATE));
 
@@ -629,7 +632,7 @@ public class StickyCalendar extends JFrame {
 				CurrentMonth.Refresh();
 			}
 			
-			private void PaintCurrentMonth() {	//ï¿½Ğ³Î¿ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ Ä¶ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
+			private void PaintCurrentMonth() {	//ÆĞ³Î¿¡ ¼±ÅÃµÈ ´ŞÀÇ Ä¶¸°´õ Ç¥½Ã
 				//this.removeAll();
 				//this.add(PlWeek, BorderLayout.NORTH);
 				//this.add(CurrentMonth, BorderLayout.CENTER);
@@ -667,7 +670,7 @@ public class StickyCalendar extends JFrame {
 
 	}
 
-	class PlScheduleListScreen extends JPanel{
+	class PlScheduleListScreen extends JPanel{	//½ºÄÉÁÙ ¸®½ºÆ® È­¸é Å¬·¡½º
 
 		class PlTopBar extends PlCanMoveFrame {
 			
@@ -719,7 +722,7 @@ public class StickyCalendar extends JFrame {
 		
 		class PlMainScreen extends JPanel{
 			
-			class PlTitleBar extends JPanel{
+			class PlTitleBar extends JPanel{	//³¯Â¥ Ç¥½ÃÇÏ´Â ÆĞ³Î
 				
 				/*
 				 *  PlTitleBar
@@ -741,7 +744,7 @@ public class StickyCalendar extends JFrame {
 				JLabel lblmonth = new JLabel();
 				JLabel lbldate = new JLabel();
 				
-				JLabel lblL = new JLabel("ï¿½ï¿½ï¿½ï¿½");
+				JLabel lblL = new JLabel("À½·Â");
 				JLabel lblLyear = new JLabel();
 				JLabel lblLmonth = new JLabel();
 				JLabel lblLdate = new JLabel();
@@ -807,21 +810,21 @@ public class StickyCalendar extends JFrame {
 				
 				
 				void Import(Date c) {
-					lblyear.setText(String.valueOf(c.getS(c.YEAR)) + "ë…„");
-					lblmonth.setText(String.valueOf(c.getS(Date.MONTH) + 1) + "ì›”");
-					lbldate.setText(c.getS(Date.DATE) + "ì¼");
+					lblyear.setText(String.valueOf(c.getS(c.YEAR)) + "³â");
+					lblmonth.setText(String.valueOf(c.getS(Date.MONTH) + 1) + "¿ù");
+					lbldate.setText(c.getS(Date.DATE) + "ÀÏ");
 					
-					lblLyear.setText(c.getL(c.YEAR) + "ï¿½ï¿½");
-					lblLmonth.setText((c.getL(Date.MONTH) + 1) + "ï¿½ï¿½");
-					lblLdate.setText(c.getL(Date.DATE) + "ï¿½ï¿½");
+					lblLyear.setText(c.getL(c.YEAR) + "³â");
+					lblLmonth.setText((c.getL(Date.MONTH) + 1) + "¿ù");
+					lblLdate.setText(c.getL(Date.DATE) + "ÀÏ");
 				}
 			
 				
 			}
 			
-			class PlScheduleList extends JPanel{
+			class PlScheduleList extends JPanel{	//½ºÄÉÁÙÀÇ ¸®½ºÆ®¸¦ Ç¥½ÃÇÏ´Â ÆĞ³Î
 
-				class PlSchedule extends JPanel{
+				class PlSchedule extends JPanel{	//½ºÄÉÁÙ ÆĞ³Î
 					/*
 					 * 	PlSchedule 
 					 * 		-ViewColor
@@ -891,7 +894,7 @@ public class StickyCalendar extends JFrame {
 								}
 								else {
 									lblStart.setText("");
-									lblCenter.setText("ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½");
+									lblCenter.setText("ÇÏ·ç Á¾ÀÏ");
 									lblEnd.setText("");
 								}
 								
@@ -1083,7 +1086,7 @@ public class StickyCalendar extends JFrame {
 				
 			}
 			
-			class PlPageBar extends JPanel{	//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¯ ï¿½Ğ³ï¿½
+			class PlPageBar extends JPanel{	//½ºÄÉÁÙ¸®½ºÆ®ÀÇ ÆäÀÌÁöÀüÈ¯ ÆĞ³Î
 				
 				/*
 				 *  PlPageBar
@@ -1166,12 +1169,12 @@ public class StickyCalendar extends JFrame {
 			/*
 			 * 	PlMainScreen
 			 * 		-TitleBar
-			 * 		-PlList ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­
-			 * 			-PlSchedule - PlListï¿½ï¿½ 4ï¿½ï¿½ï¿½ï¿½
-			 * 		-PlPageBar - PlList ï¿½ï¿½È¯
+			 * 		-PlList °¹¼ö¸¸Å­
+			 * 			-PlSchedule - PlList´ç 4°³¾¿
+			 * 		-PlPageBar - PlList ÀüÈ¯
 			*/
 			
-			private static final int ListNum = 4;	//È­ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+			private static final int ListNum = 4;	//È­¸é ÇÏ³ª´ç Ç¥½Ã ÀÏÁ¤ ¼ö
 			PlTitleBar TitleBar = new PlTitleBar();
 			PlScheduleList[] ScheduleListarr;
 			PlPageBar PageBar = new PlPageBar();
@@ -1184,14 +1187,14 @@ public class StickyCalendar extends JFrame {
 			}
 			
 			
-			void Import(Date c, ArrayList<Schedule> list) {	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
+			void Import(Date c, ArrayList<Schedule> list) {	//Á¤º¸ ÀÔ·Â
 				/*
-				 * titlebarï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½
-				 * ï¿½ï¿½ï¿½ï¿½ï¿½Ù¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-				 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ listï¿½ï¿½ï¿½ï¿½ï¿½
-				 * listï¿½é¿¡ï¿½ï¿½ scheduleï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
-				 * pagebarï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-				 * 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+				 * titlebar¿¡°Ô ³¯Â¥ Àü´Ş
+				 * ½ºÄÉÁÙ¼ö·Î ÆäÀÌÁö¼ö °è»ê
+				 * ÆäÀÌÁö¼ö¸¸Å­ list¸¸µé±â
+				 * listµé¿¡°Ô schedule¹è¿­ Àü´Ş
+				 * pagebar¿¡°Ô ÆäÀÌÁö¼ö Àü´Ş
+				 * 1ÆäÀÌÁö·Î ÀüÈ¯
 				 */
 				time = c.clone();
 				TitleBar.Import(c);
@@ -1237,7 +1240,7 @@ public class StickyCalendar extends JFrame {
 				ChangeList(1);
 			}
 			
-			private void ChangeList(int i) {	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+			private void ChangeList(int i) {	//ÆäÀÌÁö ÀüÈ¯
 				try {
 					this.removeAll();
 					this.add(TitleBar, BorderLayout.NORTH);
@@ -1261,17 +1264,17 @@ public class StickyCalendar extends JFrame {
 		}
 		
 		/*	
-		 * 	PlScheduleListScreen ï¿½ï¿½ï¿½ï¿½
+		 * 	PlScheduleListScreen ±¸¼º
 		 * 		-TopBar
 		 * 		-space_west
 		 * 		-space_east
 		 * 		-MainScreen
 		 * 
-		 * 	ï¿½Ûµï¿½
-		 * 		ï¿½ï¿½Â¥ ï¿½Ğ³ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		 * 		MainScreenï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		 * 			ï¿½ï¿½Â¥ï¿½ï¿½ TitleBarï¿½ï¿½
-		 * 			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PlScheduleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PlList, PlPageBar ï¿½ï¿½ï¿½ï¿½
+		 * 	ÀÛµ¿
+		 * 		³¯Â¥ ÆĞ³Î Å¬¸¯½Ã ³¯Â¥¿Í ½ºÄÉÁÙ Á¤º¸¸¦ ¹ŞÀ½
+		 * 		MainScreen¿¡ Àü´Ş
+		 * 			³¯Â¥´Â TitleBar¿¡
+		 * 			½ºÄÉÁÙ Á¤º¸·Î PlScheduleÀ» ¸¸µé°í °¹¼ö¿¡ µû¶ó PlList, PlPageBar ±¸¼º
 		 */
 		
 		PlSpace space_west = new PlSpace();
@@ -1286,17 +1289,17 @@ public class StickyCalendar extends JFrame {
 			this.setLayout(new BorderLayout());
 
 			
-			//ï¿½ç¿·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//¾ç¿·À¸·Î °ø¹é »ı¼º
 			this.add(space_west, BorderLayout.WEST);
 			this.add(space_east, BorderLayout.EAST);
 
-			//Ã¢ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ğ³ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//Ã¢ÀÌµ¿ °¡´ÉÇÑ ÆĞ³Î »ı¼º
 			this.add(TopBar, BorderLayout.NORTH);
 			this.add(MainScreen, BorderLayout.CENTER);
 			
 		}
 		
-		void Import(Date c, ArrayList<Schedule> ScheduleList) {	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
+		void Import(Date c, ArrayList<Schedule> ScheduleList) {	//Á¤º¸ ÀÔ·Â
 			this.time = c.clone();
 			MainScreen.Import(time, ScheduleList);
 		}
@@ -1306,23 +1309,23 @@ public class StickyCalendar extends JFrame {
 			getthis().ReturnCalendarScreen();
 		}
 		
-		private void RemoveScheduleMode() {		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â¿ï¿½ï¿½ï¿½
+		private void RemoveScheduleMode() {		//ÀÏÁ¤ »èÁ¦ ¸ğµå ¿Â¿ÀÇÁ
 			RemoveScheduleMode = !RemoveScheduleMode;
 			MainScreen.RemoveMode(RemoveScheduleMode);
 		}
 		
-		private void RemoveSchedule(Schedule s) {	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		private void RemoveSchedule(Schedule s) {	//ÀÏÁ¤ »èÁ¦
 			DB.RemoveSchedule(s);
 			this.Refresh();
 			MainScreen.RemoveMode(true);
 		}
 		
-		private void AddnewSchedule() {		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+		private void AddnewSchedule() {		//»õ ÀÏÁ¤ Ãß°¡
 			if(!RemoveScheduleMode)
 				getthis().CallAddScheduleScreen(time);
 		}
 		
-		private void ModifySchedule(Schedule s) {	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		private void ModifySchedule(Schedule s) {	//ÀÏÁ¤ ¼öÁ¤
 			if(!RemoveScheduleMode && s != null)
 				getthis().CallAddScheduleScreen(time, s);
 		}
@@ -1335,7 +1338,7 @@ public class StickyCalendar extends JFrame {
 		}
 	}
 	
-	class PlAddScheduleScreen extends JPanel {	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ È­ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	class PlAddScheduleScreen extends JPanel {	//½ºÄÉÁÙ Ãß°¡ È­¸é Å¬·¡½º
 		
 		class PlTopBar extends PlCanMoveFrame{
 			
@@ -1409,7 +1412,7 @@ public class StickyCalendar extends JFrame {
 				
 				JLabel lblTitle = new JLabel();
 				private JComboBox CBColor = new JComboBox();
-				private JCheckBox CBLunar = new JCheckBox("ï¿½ï¿½ï¿½ï¿½");
+				private JCheckBox CBLunar = new JCheckBox("À½·Â");
 				
 				JPanel North = new JPanel();
 				JPanel South = new JPanel();
@@ -1523,7 +1526,7 @@ public class StickyCalendar extends JFrame {
 					
 				}
 				
-				class PlString extends Base{	//ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½
+				class PlString extends Base{	//¼³¸í, Àå¼Ò
 					
 					JTextField txtExplanation = new JTextField();
 					JTextField txtPlace = new JTextField();
@@ -1535,7 +1538,7 @@ public class StickyCalendar extends JFrame {
 						MakeSouth();
 					}
 					protected void MakeNorth() {
-						JLabel lblExplanation = new JLabel("ï¿½ï¿½ï¿½ï¿½");
+						JLabel lblExplanation = new JLabel("¼³¸í");
 						North.add(lblExplanation);
 						
 						txtExplanation.setPreferredSize(size);
@@ -1543,7 +1546,7 @@ public class StickyCalendar extends JFrame {
 						North.add(txtExplanation);
 					}
 					protected void MakeSouth() {
-						JLabel lblPlace = new JLabel("ï¿½ï¿½ï¿½");
+						JLabel lblPlace = new JLabel("Àå¼Ò");
 						South.add(lblPlace);
 						
 						txtPlace.setPreferredSize(size);
@@ -1576,10 +1579,10 @@ public class StickyCalendar extends JFrame {
 					}
 				}
 				
-				class PlTime extends Base{		//ï¿½Ã°ï¿½
+				class PlTime extends Base{		//½Ã°£
 					
 					JComboBox[] CBTime = new JComboBox[5];
-					//ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+					//³â ¿ù ÀÏ ½Ã ºĞ
 					
 					Date time = new Date();
 					final boolean start;
@@ -1588,10 +1591,10 @@ public class StickyCalendar extends JFrame {
 						super();
 						start = b;
 						if(b) {
-							North.add(new JLabel("ï¿½ï¿½ï¿½ï¿½  "));
+							North.add(new JLabel("½ÃÀÛ  "));
 						}
 						else {
-							North.add(new JLabel("ï¿½ï¿½ï¿½ï¿½  "));
+							North.add(new JLabel("Á¾·á  "));
 						}
 						
 						MakeComboBox();
@@ -1604,17 +1607,17 @@ public class StickyCalendar extends JFrame {
 					}
 					protected void MakeNorth() {
 						North.add(CBTime[0]);
-						North.add(new JLabel("ï¿½ï¿½ "));
+						North.add(new JLabel("³â "));
 						North.add(CBTime[1]);
-						North.add(new JLabel("ï¿½ï¿½ "));
+						North.add(new JLabel("¿ù "));
 						North.add(CBTime[2]);
-						North.add(new JLabel("ï¿½ï¿½"));
+						North.add(new JLabel("ÀÏ"));
 					}
 					protected void MakeSouth() {
 						South.add(CBTime[3]);
-						South.add(new JLabel("ï¿½ï¿½  "));
+						South.add(new JLabel("½Ã  "));
 						South.add(CBTime[4]);
-						South.add(new JLabel("ï¿½ï¿½  "));
+						South.add(new JLabel("ºĞ  "));
 					}
 					
 					private void MakeComboBox() {
@@ -1759,7 +1762,7 @@ public class StickyCalendar extends JFrame {
 					}
 					
 					private void MakeButton() {
-						String[] str = {"ï¿½Ñ¹ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½Å¿ï¿½", "ï¿½Å³ï¿½"};
+						String[] str = {"ÇÑ¹ø", "¸ÅÀÏ", "¸ÅÁÖ", "¸Å¿ù", "¸Å³â"};
 						
 						for(int i = 0; i< 5; i++) {
 							JRadioButton RB = new JRadioButton(str[i]);
@@ -1849,12 +1852,12 @@ public class StickyCalendar extends JFrame {
 					this.add(SelectBar);
 				}
 				
- 				void CalendarChange(boolean b) {	//ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+ 				void CalendarChange(boolean b) {	//À½, ¾ç·Â º¯È¯
  					StartTime.CalendarChange(b);
  					EndTime.CalendarChange(b);
 				}
  				
- 				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş±ï¿½
+ 				//µ¥ÀÌÅÍ ¹Ş±â
 				void Import(Date c) {
 					Explanation.Reset();
 					c.set(Date.HOUR, 9);
@@ -1876,7 +1879,7 @@ public class StickyCalendar extends JFrame {
 					SelectBar.Set(s);
 				}
 				
-				//ï¿½ï¿½ ï¿½Ğ³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+				//ÀÌ ÆĞ³ÎÀÇ µ¥ÀÌÅÍ¸¦ Á¶ÇÕÇØ ÀÏÁ¤ ¸¸µé±â
 				Schedule MakeSchedule() {
 					
 					if(s != null) {
@@ -1902,7 +1905,7 @@ public class StickyCalendar extends JFrame {
 					return s;
 				}
 			
-				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+				//ÀÏÁ¤ ¼öÁ¤ ¸ğµå
 				void ModifyMode(boolean b) {
 					Explanation.ModifyMode(b);
 					StartTime.ModifyMode(b);
@@ -1930,35 +1933,35 @@ public class StickyCalendar extends JFrame {
 				
 			}
 			
-			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş±ï¿½
+			//µ¥ÀÌÅÍ ¹Ş±â
 			void Import(Date c) {
 				s = null;
 				
 				ChangeColor(0);
-				TitleBar.Titleset("ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½");
+				TitleBar.Titleset("ÀÏÁ¤ Ãß°¡");
 				TitleBar.Reset();
 				EditSchedule.Import(c);
 			}
 			void Import(Schedule s) {
 				this.s = s;
-				TitleBar.Titleset("ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½");
+				TitleBar.Titleset("ÀÏÁ¤ È®ÀÎ");
 				TitleBar.Set(s);
 				EditSchedule.Import(s);
 			}
 			
-			//ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+			//À½ ¾ç·Â ÀüÈ¯
 			private void CalendarChange(boolean b) {
 				EditSchedule.CalendarChange(b);
 			}
 			
-			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//ÀÏÁ¤ ÀúÀå
 			Schedule SaveSchedule() {
-				TitleBar.Titleset("ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½");
+				TitleBar.Titleset("ÀÏÁ¤ È®ÀÎ");
 				return EditSchedule.MakeSchedule();
 			}
 			
-			void CancelModify() {	// ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
-				TitleBar.Titleset("ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½");
+			void CancelModify() {	// Ãë¼Ò ¹öÆ°
+				TitleBar.Titleset("ÀÏÁ¤ È®ÀÎ");
 				if(s != null) {
 					Import(s);
 				}
@@ -1967,11 +1970,11 @@ public class StickyCalendar extends JFrame {
 				}
 			}
 			
-			void StartModify() {	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-				TitleBar.Titleset("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			void StartModify() {	//ÀÏÁ¤ ¼öÁ¤ ½ÃÀÛ
+				TitleBar.Titleset("ÀÏÁ¤ ¼öÁ¤");
 			}
 			
-			void ModifyMode(boolean b) {	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+			void ModifyMode(boolean b) {	//ÀÏÁ¤ ¼öÁ¤ ¸ğµå ÀüÈ¯
 				TitleBar.Modifymode(b);
 				EditSchedule.ModifyMode(b);
 			}
@@ -2002,7 +2005,7 @@ public class StickyCalendar extends JFrame {
 			this.add(space_west, BorderLayout.WEST);
 		}
 		
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
+		//µ¥ÀÌÅÍ ÀÔ·Â
 		void Import(Date c) {
 			ModifyModeChange(true);
 			MainScreen.Import(c);
@@ -2012,7 +2015,7 @@ public class StickyCalendar extends JFrame {
 			MainScreen.Import(s);
 		}
 		
-		private void ModifyModeChange(boolean b) {	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+		private void ModifyModeChange(boolean b) {	//¼öÁ¤ ¸ğµå ÀüÈ¯
 			ModifyMode = b;
 			MainScreen.ModifyMode(b);
 			TopBar.ModifyMode(b);
@@ -2023,7 +2026,7 @@ public class StickyCalendar extends JFrame {
 			MainScreen.setBorder(new LineBorder(DB.getColor().get(colorno).color, 2));
 		}
 		
-		private void Cancel() {		//ï¿½ï¿½Ò¹ï¿½Æ°
+		private void Cancel() {		//Ãë¼Ò¹öÆ°
 			if(ModifyMode) {
 				ModifyModeChange(false);
 				MainScreen.CancelModify();
@@ -2033,7 +2036,7 @@ public class StickyCalendar extends JFrame {
 			}
 		}
 		
-		private void CallModifyMode() {		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+		private void CallModifyMode() {		//¼öÁ¤¸ğµå È£Ãâ
 			ModifyModeChange(true);
 			MainScreen.StartModify();
 			
@@ -2053,7 +2056,7 @@ public class StickyCalendar extends JFrame {
 		
 	}
 
-	class PlSouthBar extends JPanel { 	//ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½, Resize ï¿½ï¿½ï¿½ï¿½ ï¿½Ğ³ï¿½
+	class PlSouthBar extends JPanel { 	//ÇÏ´Ü ¿©¹é, Resize ¼³Á¤ ÆĞ³Î
 
 		class Motion{
 			int x, y;
@@ -2072,7 +2075,7 @@ public class StickyCalendar extends JFrame {
 		}
 		
 		/*
-		 *  Motion mï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		 *  Motion mÀ» ÀÌ¿ëÇØ¼­ Ã¢ ¸®»çÀÌÁî
 		 */
 		
 		PlSouthBar(){
@@ -2130,16 +2133,16 @@ public class StickyCalendar extends JFrame {
 	private static final int ADDSCHEDULE = 3;
 	
 	
-	private static final Color notcurrentcolor = SystemColor.control;	//ï¿½Ì¹ï¿½ ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½
+	private static final Color notcurrentcolor = SystemColor.control;	//ÀÌ¹ø ´Ş ¾Æ´Ò¶§ÀÇ ÄÃ·¯
 	private final DataBase DB;
 
-	private final JPanel Screen;		//ï¿½âº» È­ï¿½ï¿½ ï¿½Ğ³ï¿½
+	private final JPanel Screen;		//±âº» È­¸é ÆĞ³Î
 	
-	private final PlCalendarScreen CalendarScreen;		//ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½Ğ³ï¿½
-	private final PlScheduleListScreen ScheduleListScreen;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ğ³ï¿½
-	private final PlAddScheduleScreen AddScheduleScreen;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Ğ³ï¿½
+	private final PlCalendarScreen CalendarScreen;		//¸ŞÀÎ È­¸é ÆĞ³Î
+	private final PlScheduleListScreen ScheduleListScreen;	//ÀÏÁ¤ ¸®½ºÆ® ÆĞ³Î
+	private final PlAddScheduleScreen AddScheduleScreen;	//ÀÏÁ¤ Ãß°¡ ÆĞ³Î
 
-	private final PlSouthBar SouthBar;		//ï¿½ï¿½ ï¿½ï¿½ ï¿½Ğ³ï¿½
+	private final PlSouthBar SouthBar;		//¹Ø ¹Ù ÆĞ³Î
 	
 	
 	public static void main(String[] args) {
@@ -2159,54 +2162,54 @@ public class StickyCalendar extends JFrame {
 		
 	}
 
-	static StickyCalendar getthis() {		//ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+	static StickyCalendar getthis() {		//ÀÚ½ÅÀÇ ÁÖ¼Ò ¸®ÅÏ
 		return StickyCalendarinstance;
 	}
 	
 	private StickyCalendar() {
 		
-		Screen = new JPanel();		//ï¿½ï¿½Å©ï¿½ï¿½ ï¿½Ğ³ï¿½
-		DB = DataBase.getInstance();		//ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ğ±ï¿½
-		CalendarScreen = new PlCalendarScreen();	//Ä¶ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		ScheduleListScreen = new PlScheduleListScreen();	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		AddScheduleScreen = new PlAddScheduleScreen();	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		SouthBar = new PlSouthBar();//ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		Screen = new JPanel();		//½ºÅ©¸° ÆĞ³Î
+		DB = DataBase.getInstance();		//µ¥ÀÌÅÍº£ÀÌ½º »ı¼º, ÀúÀåµÈ µ¥ÀÌÅÍ ÀĞ±â
+		CalendarScreen = new PlCalendarScreen();	//Ä¶¸°´õ È­¸é ±¸¼º
+		ScheduleListScreen = new PlScheduleListScreen();	//½ºÄÉÁÙ ¸®½ºÆ® È­¸é ±¸¼º
+		AddScheduleScreen = new PlAddScheduleScreen();	//½ºÄÉÁÙ Ãß°¡ È­¸é ±¸¼º
+		SouthBar = new PlSouthBar();//ÇÏ´Ü ¹Ù ±¸¼º
 		
-		MakeBase();					//ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		ChangeScreen(CALENDAR);	//Ä¶ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		MakeBase();					//±âº» ±¸¼º ¼³Á¤
+		ChangeScreen(CALENDAR);	//Ä¶¸°´õ È­¸éÀ¸·Î ½ÃÀÛ
 	}
 	
-	private void MakeBase() {		//ï¿½âº» È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private void MakeBase() {		//±âº» È­¸é ±¸¼º
 
-		setTitle("Sticky Calendar");					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½		
-		setUndecorated(true);							//ï¿½âº»Ã¢ ï¿½Èºï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½
+		setTitle("Sticky Calendar");					//Á¦¸ñ ¼³Á¤		
+		setUndecorated(true);							//±âº»Ã¢ ¾Èº¸ÀÌ°Ô ¼³Á¤
 		
-		this.addWindowListener(new WindowAdapter() {	//Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		this.addWindowListener(new WindowAdapter() {	//Ã¢ ²ø¶§ ¼³Á¤
 			public void windowClosing(WindowEvent e) {
 				getthis().ProgramClose();
 			}
 		});
 		
 		
-		setMinimumSize(new Dimension(400, 500));		//ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		setMinimumSize(new Dimension(400, 500));		//ÃÖ¼Ò »çÀÌÁî ¼³Á¤
 		
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+		//»çÀÌÁî, À§Ä¡ ¼³Á¤
 		setSize(DB.getUserSetting().get(DB.getUserSetting().Width), DB.getUserSetting().get(DB.getUserSetting().Height));
 		setLocation(DB.getUserSetting().get(DB.getUserSetting().X), DB.getUserSetting().get(DB.getUserSetting().Y));
 		
-		//Screen ï¿½ï¿½ï¿½ï¿½ï¿½ ContentPaneï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//Screen ¸¸µé°í ContentPaneÀ¸·Î ¼³Á¤
 		Screen.setBorder(new EmptyBorder(0, 0, 0, 0));
 		Screen.setLayout(new BorderLayout(100, 0));
 		setContentPane(Screen);							
 	}
 	
 
-	private void ProgramClose() {	//ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½É¶ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½
+	private void ProgramClose() {	//ÇÁ·Î±×·¥ Á¾·áµÉ¶§ ½ÇÇàµÇ´Â °Íµé ¸ğÀ½
 		DB.getUserSetting().save();
 		System.exit(0);
 	}
 	
-	private void ChangeScreen(int i) {	//Ã¢ ï¿½ï¿½È¯
+	private void ChangeScreen(int i) {	//Ã¢ ÀüÈ¯
 		/*
 		 	1 = CalendarScreen
 			2 = ScheduleListScreen
@@ -2236,24 +2239,24 @@ public class StickyCalendar extends JFrame {
 		
 	}
 	
-	private void CallScheduleListScreen(Date d, ArrayList<Schedule> list) {	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®È­ï¿½ï¿½ È£ï¿½ï¿½
+	private void CallScheduleListScreen(Date d, ArrayList<Schedule> list) {	//ÀÏÁ¤¸®½ºÆ®È­¸é È£Ãâ
 		ScheduleListScreen.Import(d, list);
 		getthis().ChangeScreen(SCHEDULELIST);
 	}
-	private void ReturnCalendarScreen() {	//Ä¶ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private void ReturnCalendarScreen() {	//Ä¶¸°´õ È­¸éÀ¸·Î º¹±Í
 		CalendarScreen.Refresh();
 		ChangeScreen(CALENDAR);
 	}
 	
-	private void CallAddScheduleScreen(Date d) {	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ È£ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½)
+	private void CallAddScheduleScreen(Date d) {	//ÀÏÁ¤°ü¸® È­¸é È£Ãâ(ÀÏÁ¤ Ãß°¡)
 		AddScheduleScreen.Import(d);
 		getthis().ChangeScreen(ADDSCHEDULE);
 	}
-	private void CallAddScheduleScreen(Date d, Schedule s) {	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ È£ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+	private void CallAddScheduleScreen(Date d, Schedule s) {	//ÀÏÁ¤°ü¸® È­¸é È£Ãâ(ÀÏÁ¤ ¼öÁ¤)
 		AddScheduleScreen.Import(d, s);
 		getthis().ChangeScreen(ADDSCHEDULE);
 	}
-	private void ReturnScheduleListScreen() {		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private void ReturnScheduleListScreen() {		//ÀÏÁ¤ ¸®½ºÆ® È­¸éÀ¸·Î º¹±Í
 		ScheduleListScreen.Refresh();
 		getthis().ChangeScreen(SCHEDULELIST);
 	}

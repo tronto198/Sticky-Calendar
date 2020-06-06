@@ -7,7 +7,7 @@ public class Schedule implements Comparable<Schedule>{
 	
 	protected static final int NumofData = 7;
 
-
+	//반복용
 	public static final int ONCE = 0;
 	public static final int DAY = 1;
 	public static final int WEEK = 2;
@@ -17,15 +17,15 @@ public class Schedule implements Comparable<Schedule>{
 	protected Date StartDate = new Date();
 	protected Date EndDate = new Date();
 	
-
-	protected String Explanation;
-	protected String Place;
+	//년월일
+	protected String Explanation;	//설명
+	protected String Place;		//장소
 	
 	protected int Color;
 	protected int Repeat = 0;
 	protected boolean FullTime = false;
 	
-
+	//일정 표시용
 	int viewno = -1;
 	
 	
@@ -81,7 +81,7 @@ public class Schedule implements Comparable<Schedule>{
 		return Repeat;
 	}
 	
-	int getDateDiffer() {
+	int getDateDiffer() {	//일정 지속 날 리턴
 		int d = EndDate.get(Calendar.DAY_OF_YEAR) - StartDate.get(Calendar.DAY_OF_YEAR);
 		
 		d += (EndDate.get(EndDate.YEAR) - StartDate.get(StartDate.YEAR)) * 365;
@@ -220,7 +220,7 @@ class BasisSchedule extends RepeatSchedule{
 	boolean holiday;
 	
 	BasisSchedule(){
-
+		//컬러 레드로
 		Repeat = YEAR;
 		Color = -1;
 		FullTime = true;

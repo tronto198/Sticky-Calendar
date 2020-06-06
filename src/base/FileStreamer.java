@@ -5,11 +5,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class FileStreamer {
 	
-
+	/*
+	 *  파일에 읽고 쓰기 하는 클래스
+	 */
+	
 	private static final String Directary = "data";
 	private static final String basis_schedule = "BasisSchedule.data";
 	private static final String Schedule = "Schedule.data";
@@ -50,7 +54,7 @@ public class FileStreamer {
 		
 	}
 	
-	public ArrayList<String[]> read(){
+	public ArrayList<String[]> read(){	//파일 읽어서 리턴
 		ArrayList<String[]> Data = new ArrayList<String[]>();
 	      
 		
@@ -74,7 +78,7 @@ public class FileStreamer {
 		return Data;
 	}
 
-	public void write(ArrayList<String[]> data) {
+	public void write(ArrayList<String[]> data) {	//데이터 받아서 파일에 저장
 		
 	    try {
 	        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
